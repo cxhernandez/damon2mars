@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<style>
+#GreatWall {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  background-image: url('http://www.pxleyes.com/images/contests/the-great-wall/fullsize/Great-Wall-at-Sunset-4e14d4d3e4e31_hires.jpg');
+  background-size: cover;
+}
+#BaseballField h1 {
+  text-align: center;
+  color: #DB3C1B;
+}
+#Rocket {
+  height:150px;
+  position: absolute;
+  top: 400px;
+  right: 70%;
+  content: url('./assets/images/rocket.svg');
+  z-index: 100;
+}
+#Mars {
+  height:150px;
+  position: relative;
+  float: right;
+  margin-right: 150px;
+  margin-top: 1%;
+  content:url('https://pixabay.com/static/uploads/photo/2016/04/01/08/43/cartoon-1298905_960_720.png');
+}
+</style>
+<body>
+
+<p>
+<button onclick="myMove()">Send Matt Damon Back to Mars!</button>
+</p>
+
+<div id ="GreatWall">
+  <div id ="Rocket"></div>
+  <div id ="Mars">
+  </div>
+</div>
+
+<script>
+function myMove() {
+  var rocket = document.getElementById("Rocket");
+  var mars = document.getElementById("Mars");
+  var steps = 350;
+  var x0, y0, x, y, h, w;
+  x0 = rocket.offsetLeft;
+  y0 = rocket.offsetTop;
+  h = rocket.clientHeight;
+  w = rocket.clientWidth;
+  x = x0;
+  y = y0;
+  var x1 = mars.offsetLeft;
+  var y1 = mars.offsetTop + 50;
+
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (( x >= x1  ) &&  (y <= y1)) {
+      clearInterval(id);
+    } else {
+      x = x + (x1 - x0) / steps;
+      y = y - (y0 - y1) / steps ;
+      rocket.style.left = x + 'px';
+      rocket.style.top = y + 'px';
+      w = .995 * w;
+      h = .995 * h;
+      rocket.style.width = w + 'px';
+      rocket.style.height = h + 'px';
+    }
+  }
+}
+</script>
+
+</body>
+</html>
